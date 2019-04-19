@@ -1,0 +1,59 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+      {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                178.0830,
+                -18.2500
+            ]
+        },
+        "type": "Feature",
+        "properties": {
+          "icon": "lodging-15",
+          "description": "Uprising Beach Resort",
+          "title": "",
+          "url": "",
+          "address": "",
+          "phone": ""
+        }
+      },
+      {
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                177.4507,
+                -17.7535
+            ]
+        },
+        "type": "Feature",
+        "properties": {
+          "icon": "airport-15",
+          "description": "Nadi Airport",
+          "title": "",
+          "url": "",
+          "address": "",
+          "phone": ""
+        }
+    },
+    {
+      "geometry": {
+          "type": "Point",
+          "coordinates": [
+              178.0181,
+              -17.6146
+          ]
+      },
+      "type": "Feature",
+      "properties": {
+        "icon": "mountain-15",
+        "description": "Mount Tomanivi",
+        "title": "",
+        "url": "",
+        "address": "",
+        "phone": ""
+      }
+    }
+  ]
+}
