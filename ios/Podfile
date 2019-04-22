@@ -32,6 +32,8 @@ target 'LocalEyes' do
   # Mapbox
   pod 'react-native-mapbox-gl', :path => '../node_modules/@mapbox/react-native-mapbox-gl'
 
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
   target 'LocalEyesTests' do
     inherit! :search_paths
     # Pods for testing

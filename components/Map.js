@@ -5,36 +5,14 @@ import Realm from 'realm';
 import mapPoints from '../database/geoJson/mapPoints.json';
 import mapLines from '../database/geoJson/mapLines.json';
 import iconImage from '../assets/icon.png';
-
-const locationSchema = {
-  name: 'location',
-  properties: {
-    name: 'string',
-    latitude: 'string',
-    longitude: 'string',
-  }
-}
-
-const realmConfig = {
-  path: 'LocalEyes.realm',
-  schema: [locationSchema],
-  schemaVersion: 0,
-}
+import { locationSchema } from '../database/models/location';
+import { realmConfig } from '../database/realmConfig';
 
 MapboxGL.setAccessToken('pk.eyJ1IjoibXJtZWciLCJhIjoiY2p1OTFrZ3lvMmI2ZDN5b2IyMTJqbGx3aCJ9.JMyS6W3wxERau3-2nuzSsA');
 
 export default class Map extends Component {
 
-  state = {
-    featureCollection: MapboxGL.geoUtils.makeFeatureCollection(),
-    featureObject: {
-      type: "Feature",
-      geometry: {
-          type: "Point",
-          coordinates: [178.0650, -17.7134]
-      },
-    }
-  }
+  state = {}
 
   componentWillMount() {
     // Realm.open(realmConfig).then(realm => {
@@ -59,23 +37,24 @@ export default class Map extends Component {
     // })
 
     Realm.open(realmConfig).then(realm => {
-      let locations = realm.objects('location');
+      const locations = realm.objects(locationSchema.name);
       this.setState({
-        // locations: locations,
+        locations: locations
       })
-      // console.warn(this.state.locations);
     })
+
   } // Close componentWillMount()
 
   onMarkerPress = (event) => {
     const feature = event.nativeEvent.payload;
-    console.warn(feature.properties.description);
+    // console.warn(feature.properties.description);
+    this.props.navigation.push('Modal', { feature });
   }
 
   onLinePress = (event) => {
     const feature = event.nativeEvent.payload;
-    console.warn(feature.properties.description)
-
+    // console.warn(feature.properties.description)
+    this.props.navigation.push('Modal', { feature })
   }
 
   render() {
@@ -134,7 +113,4 @@ export default class Map extends Component {
   }
 }
 
-const styles = MapboxGL.StyleSheet.create({
-
-})
-
+const styles = StyleSheet.create({});
