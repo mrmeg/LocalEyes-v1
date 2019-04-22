@@ -2,7 +2,7 @@ import React from 'react';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 import Map from '../components/Map';
 import ModalScreen from '../components/ModalScreen';
- 
+
 const RootStack = createStackNavigator({
   Home: {
     screen: Map,
@@ -13,7 +13,7 @@ const RootStack = createStackNavigator({
   Modal: {  
     screen: ModalScreen,
     navigationOptions: ({ navigation }) => ({
-      title: 'Modal'
+      title: navigation.state.params.feature.properties.description
     })
   },
 })

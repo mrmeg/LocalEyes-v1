@@ -4,7 +4,6 @@ import MapboxGL from '@mapbox/react-native-mapbox-gl';
 import Realm from 'realm';
 import mapPoints from '../database/geoJson/mapPoints.json';
 import mapLines from '../database/geoJson/mapLines.json';
-import iconImage from '../assets/icon.png';
 import { locationSchema } from '../database/models/location';
 import { realmConfig } from '../database/realmConfig';
 
@@ -48,13 +47,13 @@ export default class Map extends Component {
   onMarkerPress = (event) => {
     const feature = event.nativeEvent.payload;
     // console.warn(feature.properties.description);
-    this.props.navigation.push('Modal', { feature });
+    this.props.navigation.navigate('Modal', { feature });
   }
 
   onLinePress = (event) => {
     const feature = event.nativeEvent.payload;
     // console.warn(feature.properties.description)
-    this.props.navigation.push('Modal', { feature })
+    this.props.navigation.navigate('Modal', { feature })
   }
 
   render() {
