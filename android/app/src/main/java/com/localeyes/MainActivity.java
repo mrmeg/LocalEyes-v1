@@ -1,4 +1,4 @@
-package com.localeyes;
+package com.rnmapboxglexample;
 
 import com.facebook.react.ReactActivity;
 
