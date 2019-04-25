@@ -1,0 +1,53 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [178.083, -18.25]
+      },
+      "type": "Feature",
+      "properties": {
+        "icon": "lodging-15",
+        "description": "The Uprising Beach Resort presents a stunning and impressive selection of authentic, Fijian-themed accommodation options ranging from traditional thatched.",
+        "title": "Uprising Beach Resort",
+        "uri": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnq_8W8ft4amPbfGTDeM2Kva7ZvZjXbip3VOiQGybpaBhgK4o1FA",
+        "address": "Lot 1 Beach Rd, Pacific Harbour, Fiji",
+        "phone": "(679)345-2200",
+        "website": "https://uprisingbeachresort.com/"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [177.4507, -17.7535]
+      },
+      "type": "Feature",
+      "properties": {
+        "icon": "airport-15",
+        "description": "Nadi International Airport is the main international airport for the Republic of Fiji as well as an important regional hub for the South Pacific islands, located by the coast on the western side of the main island Viti Levu.",
+        "title": "Nadi Airport",
+        "uri": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Nadi_Airport_-_International_Departures_2.jpg",
+        "address": "Nadi, Fiji",
+        "phone": "(679)672-5777",
+        "website": "http://www.airportsfiji.com/"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [178.0181, -17.6146]
+      },
+      "type": "Feature",
+      "properties": {
+        "icon": "mountain-15",
+        "description": "Mount Tomanivi, previously named Mount Victoria and also known as Toamiivi, is an extinct volcano located in the northern highlands of Viti Levu. At 1,324 metres, Mount Tomanivi is the highest mountain in Fiji.",
+        "title": "Mount Tomanivi",
+        "uri": "https://i1.wp.com/cushtravel.com/wp-content/uploads/2017/02/fiji-tomanivi.jpg?fit=696%2C522&ssl=1",
+        "address": "",
+        "phone": "(679)668-0522",
+        "website": "https://en.wikipedia.org/wiki/Mount_Tomanivi"
+      }
+    }
+  ]
+}
