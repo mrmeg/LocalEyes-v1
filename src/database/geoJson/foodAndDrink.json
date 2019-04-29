@@ -1,0 +1,240 @@
+{  
+   "type":"FeatureCollection",
+   "name":"Food and Drink",
+   "crs":{
+      "type":"name",
+      "properties":{  
+         "name":"urn:ogc:def:crs:OGC:1.3:CRS84"
+      }
+   },
+   "features":[
+      {  
+         "type":"Feature",
+         "properties":{  
+            "Name":"Eds Bar",
+            "icon": "bar-11",
+            "description": "",
+            "address": "",
+            "phone": "",
+            "photos": "",
+            "url": ""
+         },
+         "geometry":{  
+            "type":"Point",
+            "coordinates":[  
+               177.433289728016206,
+               -17.775427457623511
+            ]
+         }
+      },
+      {  
+         "type":"Feature",
+         "properties":{  
+            "Name":"Damodar City Food Court",
+            "icon": "restaurant-11",
+            "description": "",
+            "address": "",
+            "phone": "",
+            "photos": "",
+            "url": ""         
+         },
+         "geometry":{  
+            "type":"Point",
+            "coordinates":[  
+               178.448047803295395,
+               -18.146235153056569
+            ]
+         }
+      },
+      {  
+         "type":"Feature",
+         "properties":{  
+            "Name":"Fatburger",
+            "icon": "restaurant-11",
+            "description": "",
+            "address": "",
+            "phone": "",
+            "photos": "",
+            "url": ""         
+         },
+         "geometry":{  
+            "type":"Point",
+            "coordinates":[  
+               178.4473243977761,
+               -18.146076002047032
+            ]
+         }
+      },
+      {  
+         "type":"Feature",
+         "properties":{  
+            "Name":"Fire and Ice",
+            "icon": "bar-11",
+            "description": "",
+            "address": "",
+            "phone": "",
+            "photos": "",
+            "url": ""
+         },
+         "geometry":{  
+            "type":"Point",
+            "coordinates":[  
+               178.447438058458005,
+               -18.146637167851441
+            ]
+         }
+      },
+      {  
+         "type":"Feature",
+         "properties":{  
+            "Name":"The Great Wok of China",
+            "icon": "restaurant-11",
+            "description": "",
+            "address": "",
+            "phone": "",
+            "photos": "",
+            "url": ""
+         },
+         "geometry":{  
+            "type":"Point",
+            "coordinates":[  
+               178.436033430039004,
+               -18.144619807721529
+            ]
+         }
+      },
+      {  
+         "type":"Feature",
+         "properties":{  
+            "Name":"Ice Bar",
+            "icon": "bar-11",
+            "description": "",
+            "address": "",
+            "phone": "",
+            "photos": "",
+            "url": ""
+         },
+         "geometry":{  
+            "type":"Point",
+            "coordinates":[  
+               177.430980171705897,
+               -17.77958205685389
+            ]
+         }
+      },
+      {  
+         "type":"Feature",
+         "properties":{  
+            "Name":"O'Reilly's Bar & Bad Dog Cafe",
+            "icon": "bar-11",
+            "description": "",
+            "address": "",
+            "phone": "",
+            "photos": "",
+            "url": ""
+         },
+         "geometry":{  
+            "type":"Point",
+            "coordinates":[  
+               178.4235491790823,
+               -18.141698620387789
+            ]
+         }
+      },
+      {  
+         "type":"Feature",
+         "properties":{  
+            "Name":"McDonalds",
+            "icon": "fast-food-11",
+            "description": "",
+            "address": "",
+            "phone": "",
+            "photos": "",
+            "url": ""
+         },
+         "geometry":{  
+            "type":"Point",
+            "coordinates":[  
+               178.446805791678088,
+               -18.14697850710289
+            ]
+         }
+      },
+      {  
+         "type":"Feature",
+         "properties":{  
+            "Name":"Tiko's Seafood Restaraunt",
+            "icon": "restaurant-11",
+            "description": "",
+            "address": "",
+            "phone": "",
+            "photos": "",
+            "url": ""
+         },
+         "geometry":{  
+            "type":"Point",
+            "coordinates":[  
+               178.421976499527489,
+               -18.140040865545451
+            ]
+         }
+      },
+      {  
+         "type":"Feature",
+         "properties":{  
+            "Name":"Suva Market",
+            "icon": "restaurant-11",
+            "description": "",
+            "address": "",
+            "phone": "",
+            "photos": "",
+            "url": ""
+         },
+         "geometry":{  
+            "type":"Point",
+            "coordinates":[  
+               178.425096097249792,
+               -18.136405440567479
+            ]
+         }
+      },
+      {  
+         "type":"Feature",
+         "properties":{  
+            "Name":"Royal Suva Yacht Club",
+            "icon": "bar-11",
+            "description": "",
+            "address": "",
+            "phone": "",
+            "photos": "",
+            "url": ""
+         },
+         "geometry":{  
+            "type":"Point",
+            "coordinates":[  
+               178.430012077391211,
+               -18.122434574221941
+            ]
+         }
+      },
+      {  
+         "type":"Feature",
+         "properties":{  
+            "Name":"Hard Rock Fiji",
+            "icon": "restaurant-11",
+            "description": "",
+            "address": "",
+            "phone": "",
+            "photos": "",
+            "url": ""
+         },
+         "geometry":{  
+            "type":"Point",
+            "coordinates":[  
+               177.380376910222708,
+               -17.771611227953759
+            ]
+         }
+      }
+   ]
+}

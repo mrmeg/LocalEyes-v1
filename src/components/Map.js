@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
 import Realm from 'realm';
-import mapPoints from '../database/geoJson/mapPoints.json';
+// import mapPoints from '../database/geoJson/mapPoints.json';
 import mapLines from '../database/geoJson/mapLines.json';
+import foodAndDrink from '../database/geoJson/foodAndDrink.json';
+import lodging from '../database/geoJson/lodging.json';
 import { locationSchema } from '../database/models/location';
 import { realmConfig } from '../database/realmConfig';
 // import App from './App';
@@ -12,6 +14,10 @@ MapboxGL.setAccessToken(
 );
 
 export default class Map extends Component {
+  static navigationOptions = {
+    title: 'LocalEyes — Fiji'
+  }
+
   componentWillMount() {
     Realm.open(realmConfig).then(realm => {
       const locations = realm.objects(locationSchema.name);
@@ -23,7 +29,6 @@ export default class Map extends Component {
 
   onMarkerPress = event => {
     const feature = event.nativeEvent.payload;
-
     this.props.navigation.navigate('Modal', { feature });
   };
 
@@ -54,16 +59,31 @@ export default class Map extends Component {
         style={{ flex: 1 }}
         onPress={this.onPress}
       >
-        <MapboxGL.ShapeSource
-          id="locations"
+
+       <MapboxGL.ShapeSource
+          id="lodging"
           hitbox={{ width: 20, height: 20 }}
           onPress={this.onMarkerPress}
-          shape={mapPoints}
+          shape={lodging}
         >
           <MapboxGL.SymbolLayer
-            id="locationIcon"
+            id="lodging"
             minZoomLevel={1}
             style={layerStyles.icon}
+          />
+        </MapboxGL.ShapeSource>
+
+        <MapboxGL.ShapeSource
+          id="Food and Drink"
+          hitbox={{ width: 20, height: 20 }}
+          onPress={this.onMarkerPress}
+          shape={foodAndDrink}
+        >
+          <MapboxGL.SymbolLayer
+            id="Food and Drink"
+            minZoomLevel={1}
+            style={layerStyles.icon}
+
           />
         </MapboxGL.ShapeSource>
 

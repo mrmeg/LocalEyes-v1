@@ -1,24 +1,9 @@
 import React from 'react';
-import { createAppContainer, createStackNavigator } from 'react-navigation';
-import Map from '../components/Map';
-import ModalFeature from '../components/ModalFeature';
+import { createAppContainer, createSwitchNavigator, createStackNavigator } from 'react-navigation';
+import Filters from '../components/Filters';
 
-const RootStack = createStackNavigator({
-  Home: {
-    screen: Map,
+import MainTabNavigator from './MainTabNavigator';
 
-    navigationOptions: ({ navigation }) => ({
-      header: null
-    })
-  },
-  Modal: {
-    screen: ModalFeature,
-    navigationOptions: ({ navigation }) => ({
-      title: navigation.state.params.feature.properties.title
-    })
-  }
-});
-
-const AppNavigator = createAppContainer(RootStack);
-
-export default AppNavigator;
+export default createAppContainer(createStackNavigator({
+  Main: MainTabNavigator,
+}));
