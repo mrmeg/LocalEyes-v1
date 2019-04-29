@@ -14,9 +14,9 @@ MapboxGL.setAccessToken(
 );
 
 export default class Map extends Component {
-  static navigationOptions = {
-    title: 'LocalEyes — Fiji'
-  }
+  // static navigationOptions = {
+  //   title: 'LocalEyes — Fiji'
+  // }
 
   componentWillMount() {
     Realm.open(realmConfig).then(realm => {
