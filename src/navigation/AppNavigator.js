@@ -6,4 +6,7 @@ import MainTabNavigator from './MainTabNavigator';
 
 export default createAppContainer(createStackNavigator({
   Main: MainTabNavigator,
-}));
+}, {
+  headerMode: 'none',
+}
+));
