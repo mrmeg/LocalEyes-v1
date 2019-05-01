@@ -46,16 +46,17 @@ export default class Map extends Component {
       }
     });
 
-    const rasterSourceProps = {
-      id: 'terrainSource',
-      // url: '',
-      url: 'http://tile.stamen.com/terrain/{z}/{x}/{y}.jpg',
-      // url: 'http://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      tileSize: 256,
-    };
+    // const rasterSourceProps = {
+    //   id: 'terrainSource',
+    //   // url: '',
+    //   url: 'http://tile.stamen.com/terrain/{z}/{x}/{y}.jpg',
+    //   // url: 'http://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    //   tileSize: 256,
+    // };
 
     return (
       <MapboxGL.MapView
+        styleURL='mapbox://styles/mrmeg/cjv5d4zgi1wqy1fpfifl58i5y'
         centerCoordinate={[178.065, -17.7134]}
         pitchEnabled={false}
         rotateEnabled={false}
@@ -63,13 +64,13 @@ export default class Map extends Component {
         style={{ flex: 1 }}
         onPress={this.onPress}
       >
-      <MapboxGL.RasterSource {...rasterSourceProps}>
+      {/* <MapboxGL.RasterSource {...rasterSourceProps}>
         <MapboxGL.RasterLayer
           id="terrainSource"
           sourceID="terrainSource"
           style={{rasterOpacity: 1}}
         />
-          </MapboxGL.RasterSource>
+          </MapboxGL.RasterSource> */}
 
        <MapboxGL.ShapeSource
           id="lodging"
