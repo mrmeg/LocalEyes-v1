@@ -13,14 +13,20 @@ MapboxGL.setAccessToken(
 
 export default class Map extends Component {
 
+  componentWillReceiveProps() {
+    this.setState({
+      data: this.props.navigation.state.params
+    })
+    console.warn(this.props.navigation.state.params)
+  }
+
   componentWillMount() {
-    console.warn(this.state)
-    Realm.open(realmConfig).then(realm => {
-      const locations = realm.objects(locationSchema.name);
-      this.setState({
-        locations: locations
-      });
-    });
+    // Realm.open(realmConfig).then(realm => {
+    //   const locations = realm.objects(locationSchema.name);
+    //   this.setState({
+    //     locations: locations
+    //   });
+    // });
   }
 
   onMarkerPress = event => {
@@ -33,18 +39,25 @@ export default class Map extends Component {
     this.props.navigation.navigate('Modal', { feature });
   };
 
+  getCurrentZoom() {
+    console.warn(this.map.getZoom());
+  }
+
   render() {
     const layerStyles = MapboxGL.StyleSheet.create({
       icon: {
         iconImage: '{icon}',
         iconAllowOverlap: true,
         iconSize: 1.5,
-        iconIgnorePlacement: true
+        iconIgnorePlacement: true,
       },
       line: {
         lineWidth: 2
       }
     });
+
+    const itemId = this.props.navigation.getParam('itemId', 'NO-ID');
+    const otherParam = this.props.navigation.getParam('otherParam', 'some default value');  
 
     // const rasterSourceProps = {
     //   id: 'terrainSource',
@@ -56,6 +69,7 @@ export default class Map extends Component {
 
     return (
       <MapboxGL.MapView
+        ref={ref => (this.map = ref)}
         styleURL='mapbox://styles/mrmeg/cjv5d4zgi1wqy1fpfifl58i5y'
         centerCoordinate={[178.065, -17.7134]}
         pitchEnabled={false}

@@ -11,14 +11,22 @@ export default class Filters extends Component {
 
   buttonPress = () => {
     this.setState({
-      data: 'I am test data'
+      data: 'Something passed to map'
     })
   }
 
   dismissModal = () => {
-    this.props.navigation.navigate('Map', this.state.data)
-    console.warn(this.state.data)
+    // if this.state.data !== undefined
+      // send state data to Map
+    // else
+      // navigate back to map without sending data
+
+    this.props.navigation.navigate('Map', {
+      data: this.state.data,
+    }); 
+
   }
+
 
   render() {
     return (
