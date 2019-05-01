@@ -1,15 +1,36 @@
+import React from 'react';
+import { Platform } from 'react-native';
 import Map from '../components/Map';
 import Filters from '../components/Filters';
 import BlankScreen from '../components/Blank';
 import ModalFeature from '../components/ModalFeature';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const tabNavScreens = {
   Map: {
     screen: Map,
+    navigationOptions: {
+      tabBarIcon: ({ focused }) => (
+        <Icon 
+          name={Platform.OS === 'ios' ? 'ios-map' : 'md-map'}
+          size={26}
+          color='#4F8EF7'
+        />
+      )
+    }
   },
   Filters: {
-    screen: BlankScreen
+    screen: BlankScreen,
+    navigationOptions: {
+      tabBarIcon: ({ focused }) => (
+        <Icon 
+          name={Platform.OS === 'ios' ? 'ios-settings' : 'md-settings'}
+          size={26}
+          color='#4F8EF7'
+        />
+      )
+    }
   }
 };
 
@@ -18,11 +39,9 @@ const tabNavConfig = {
   defaultNavigationOptions: {
     tabBarOnPress: (data) => {
       const { navigation, defaultHandler } = data;
-      if (navigation.state.key === 'Filters') {
-        navigation.navigate('FilterModal');
-      } else {
-        defaultHandler(navigation.state.key);
-      }
+      navigation.state.key === 'Filters' 
+      ? navigation.navigate('FilterModal') 
+      : defaultHandler(navigation.state.key);
     }
   },
   cardStyle: {

@@ -16,7 +16,7 @@
             "description": "",
             "address": "",
             "phone": "",
-            "photos": "",
+            "photo": "EDSBAR",
             "url": ""
          },
          "geometry":{  
@@ -35,7 +35,7 @@
             "description": "",
             "address": "",
             "phone": "",
-            "photos": "",
+            "photo": "DAMODARCITYFC",
             "url": ""         
          },
          "geometry":{  
@@ -50,11 +50,11 @@
          "type":"Feature",
          "properties":{  
             "Name":"Fatburger",
-            "icon": "restaurant-11",
+            "icon": "fast-food-11",
             "description": "",
             "address": "",
             "phone": "",
-            "photos": "",
+            "photo": "FATBURGER",
             "url": ""         
          },
          "geometry":{  
@@ -68,12 +68,12 @@
       {  
          "type":"Feature",
          "properties":{  
-            "Name":"Fire and Ice",
+            "Name":"Fire N Ice",
             "icon": "bar-11",
             "description": "",
             "address": "",
             "phone": "",
-            "photos": "",
+            "photo": "FIRENICE",
             "url": ""
          },
          "geometry":{  
@@ -92,7 +92,7 @@
             "description": "",
             "address": "",
             "phone": "",
-            "photos": "",
+            "photo": "GREATWOK",
             "url": ""
          },
          "geometry":{  
@@ -111,7 +111,7 @@
             "description": "",
             "address": "",
             "phone": "",
-            "photos": "",
+            "photo": "ICEBAR",
             "url": ""
          },
          "geometry":{  
@@ -130,7 +130,7 @@
             "description": "",
             "address": "",
             "phone": "",
-            "photos": "",
+            "photo": "OREILLYS",
             "url": ""
          },
          "geometry":{  
@@ -149,7 +149,7 @@
             "description": "",
             "address": "",
             "phone": "",
-            "photos": "",
+            "photo": "MCDONALDS",
             "url": ""
          },
          "geometry":{  
@@ -168,7 +168,7 @@
             "description": "",
             "address": "",
             "phone": "",
-            "photos": "",
+            "photo": "TIKOS",
             "url": ""
          },
          "geometry":{  
@@ -187,7 +187,7 @@
             "description": "",
             "address": "",
             "phone": "",
-            "photos": "",
+            "photo": "SUVAMARKET",
             "url": ""
          },
          "geometry":{  
@@ -206,7 +206,7 @@
             "description": "",
             "address": "",
             "phone": "",
-            "photos": "",
+            "photo": "ROYALSUVAYC",
             "url": ""
          },
          "geometry":{  
@@ -225,7 +225,7 @@
             "description": "",
             "address": "",
             "phone": "",
-            "photos": "",
+            "photo": "HARDROCK",
             "url": ""
          },
          "geometry":{  

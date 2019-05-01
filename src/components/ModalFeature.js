@@ -6,6 +6,7 @@ import {
   ModalCardSectionDescription,
   ModalCardSectionFeatureData
 } from './common';
+import images from '../media/images';
 
 class ModalFeature extends Component {
   render() {
@@ -17,7 +18,7 @@ class ModalFeature extends Component {
       <ScrollView>
         <Card>
           <ModalCardSectionImage>
-            <Image source={{ uri: properties.uri }} style={imageStyle} />
+            <Image source={ images[properties.photo] } style={imageStyle} />
           </ModalCardSectionImage>
           <ModalCardSectionDescription>
             <Text style={textStyle}>{properties.description}</Text>

@@ -7,16 +7,17 @@ const ModalCardSectionDescription = props => {
 
 const styles = {
   containerStyle: {
+    flex: 1,
     paddingTop: 8,
     borderBottomWidth: 1,
-    height: 120,
     width: '100%',
     padding: 5,
     justifyContent: 'flex-start',
     flexDirection: 'row',
     borderColor: '#ddd',
     position: 'relative',
-    backgroundColor: '#fdfdfd'
+    backgroundColor: '#d7dcd0',
+    opacity: .80,
   }
 };
 

@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
 import Realm from 'realm';
-// import mapPoints from '../database/geoJson/mapPoints.json';
 import mapLines from '../database/geoJson/mapLines.json';
 import foodAndDrink from '../database/geoJson/foodAndDrink.json';
 import lodging from '../database/geoJson/lodging.json';
 import { locationSchema } from '../database/models/location';
 import { realmConfig } from '../database/realmConfig';
-// import App from './App';
 
 MapboxGL.setAccessToken(
   'pk.eyJ1IjoibXJtZWciLCJhIjoiY2p1OTFrZ3lvMmI2ZDN5b2IyMTJqbGx3aCJ9.JMyS6W3wxERau3-2nuzSsA'
 );
 
 export default class Map extends Component {
-  // static navigationOptions = {
-  //   title: 'LocalEyes — Fiji'
-  // }
 
   componentWillMount() {
+    console.warn(this.state)
     Realm.open(realmConfig).then(realm => {
       const locations = realm.objects(locationSchema.name);
       this.setState({
@@ -50,6 +46,14 @@ export default class Map extends Component {
       }
     });
 
+    const rasterSourceProps = {
+      id: 'terrainSource',
+      // url: '',
+      url: 'http://tile.stamen.com/terrain/{z}/{x}/{y}.jpg',
+      // url: 'http://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      tileSize: 256,
+    };
+
     return (
       <MapboxGL.MapView
         centerCoordinate={[178.065, -17.7134]}
@@ -59,6 +63,13 @@ export default class Map extends Component {
         style={{ flex: 1 }}
         onPress={this.onPress}
       >
+      <MapboxGL.RasterSource {...rasterSourceProps}>
+        <MapboxGL.RasterLayer
+          id="terrainSource"
+          sourceID="terrainSource"
+          style={{rasterOpacity: 1}}
+        />
+          </MapboxGL.RasterSource>
 
        <MapboxGL.ShapeSource
           id="lodging"

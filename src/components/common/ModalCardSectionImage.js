@@ -11,7 +11,7 @@ const styles = {
     height: 300,
     width: '100%',
     padding: 5,
-    backgroundColor: '#fdfdfd',
+    backgroundColor: '#d7dcd0',
     justifyContent: 'flex-start',
     flexDirection: 'row',
     borderColor: '#ddd',

@@ -11,9 +11,10 @@ const styles = {
     borderBottomWidth: 1,
     width: '100%',
     padding: 5,
-    backgroundColor: '#fdfdfd',
     justifyContent: 'flex-start',
     flexDirection: 'row',
+    backgroundColor: '#d7dcd0',
+    opacity: .80,
     borderColor: '#ddd',
     position: 'relative'
   }
