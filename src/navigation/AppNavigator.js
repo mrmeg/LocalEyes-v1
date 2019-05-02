@@ -39,10 +39,10 @@ const tabNavConfig = {
   defaultNavigationOptions: {
     tabBarOnPress: (data) => {
       const { navigation, defaultHandler } = data;
-
+      // 
       navigation.state.key === 'Map' 
-      ? console.warn(`I'm going to zoom the map out!`)
-      // navigation.navigate('Map', console.warn('Hello'))
+      ? // console.warn(`I'm going to zoom the map out!`)
+      navigation.navigate('Map', {zoomOut: true, zoomin: false})
       : null;
 
       navigation.state.key === 'Filters' 

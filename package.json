@@ -12,6 +12,7 @@
     "react-art": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-native": "0.59.4",
+    "react-native-elements": "^1.1.0",
     "react-native-gesture-handler": "^1.1.0",
     "react-native-log-ios": "^1.0.1",
     "react-native-vector-icons": "^6.4.2",

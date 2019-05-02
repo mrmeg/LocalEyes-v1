@@ -13,20 +13,27 @@ MapboxGL.setAccessToken(
 
 export default class Map extends Component {
 
+  state = {}
+
+  getNavigationParams() {
+    return this.props.navigation.state.params || {}
+  }
+
   componentWillReceiveProps() {
-    this.setState({
-      data: this.props.navigation.state.params
-    })
-    console.warn(this.props.navigation.state.params)
+    if(this.props.navigation.navigate) {
+      console.warn(this.props.navigation.state)
+      this.zoomOut()
+    }
   }
 
   componentWillMount() {
-    // Realm.open(realmConfig).then(realm => {
-    //   const locations = realm.objects(locationSchema.name);
-    //   this.setState({
-    //     locations: locations
-    //   });
-    // });
+    console.log(this.state);
+    Realm.open(realmConfig).then(realm => {
+      const locations = realm.objects(locationSchema.name);
+      this.setState({
+        locations: locations
+      });
+    });
   }
 
   onMarkerPress = event => {
@@ -39,8 +46,10 @@ export default class Map extends Component {
     this.props.navigation.navigate('Modal', { feature });
   };
 
-  getCurrentZoom() {
-    console.warn(this.map.getZoom());
+  zoomOut = () => {
+    this._map.getZoom().then((zoom) => {
+      this._map.zoomTo(zoom-.5)
+    })
   }
 
   render() {
@@ -49,15 +58,15 @@ export default class Map extends Component {
         iconImage: '{icon}',
         iconAllowOverlap: true,
         iconSize: 1.5,
-        iconIgnorePlacement: true,
+        iconIgnorePlacement: true
       },
       line: {
         lineWidth: 2
+      },
+      excluded: {
+        visibility: 'none'
       }
     });
-
-    const itemId = this.props.navigation.getParam('itemId', 'NO-ID');
-    const otherParam = this.props.navigation.getParam('otherParam', 'some default value');  
 
     // const rasterSourceProps = {
     //   id: 'terrainSource',
@@ -69,8 +78,8 @@ export default class Map extends Component {
 
     return (
       <MapboxGL.MapView
-        ref={ref => (this.map = ref)}
-        styleURL='mapbox://styles/mrmeg/cjv5d4zgi1wqy1fpfifl58i5y'
+        ref={c => (this._map = c)}
+        styleURL="mapbox://styles/mrmeg/cjv5cwiqp02b61gmv3c75alpo"
         centerCoordinate={[178.065, -17.7134]}
         pitchEnabled={false}
         rotateEnabled={false}
@@ -78,7 +87,7 @@ export default class Map extends Component {
         style={{ flex: 1 }}
         onPress={this.onPress}
       >
-      {/* <MapboxGL.RasterSource {...rasterSourceProps}>
+        {/* <MapboxGL.RasterSource {...rasterSourceProps}>
         <MapboxGL.RasterLayer
           id="terrainSource"
           sourceID="terrainSource"
@@ -86,7 +95,7 @@ export default class Map extends Component {
         />
           </MapboxGL.RasterSource> */}
 
-       <MapboxGL.ShapeSource
+        <MapboxGL.ShapeSource
           id="lodging"
           hitbox={{ width: 20, height: 20 }}
           onPress={this.onMarkerPress}
@@ -96,6 +105,7 @@ export default class Map extends Component {
             id="lodging"
             minZoomLevel={1}
             style={layerStyles.icon}
+            style={layerStyles.excluded}
           />
         </MapboxGL.ShapeSource>
 
@@ -109,7 +119,6 @@ export default class Map extends Component {
             id="Food and Drink"
             minZoomLevel={1}
             style={layerStyles.icon}
-
           />
         </MapboxGL.ShapeSource>
 
