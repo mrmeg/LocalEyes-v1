@@ -15,10 +15,10 @@ const tabNavScreens = {
         <Icon 
           name={Platform.OS === 'ios' ? 'ios-map' : 'md-map'}
           size={26}
-          color='#4F8EF7'
+          color='#fff'
         />
-      )
-    }
+      ),
+    },
   },
   Filters: {
     screen: BlankScreen,
@@ -27,7 +27,7 @@ const tabNavScreens = {
         <Icon 
           name={Platform.OS === 'ios' ? 'ios-settings' : 'md-settings'}
           size={26}
-          color='#4F8EF7'
+          color='#fff'
         />
       )
     }
@@ -36,23 +36,34 @@ const tabNavScreens = {
 
 const tabNavConfig = {
   initialRouteName: 'Map',
+  tabBarOptions: {
+    activeTintColor: '#fff',
+    inactiveTintColor: '#fff',
+    activeBackgroundColor: '#0b8694',
+    inactiveBackgroundColor: '#0b8694',
+    style: {
+      backgroundColor: '#0b8694',
+    }
+  },
   defaultNavigationOptions: {
     tabBarOnPress: (data) => {
       const { navigation, defaultHandler } = data;
-      // 
-      navigation.state.key === 'Map' 
-      ? // console.warn(`I'm going to zoom the map out!`)
-      navigation.navigate('Map', {zoomOut: true, zoomin: false})
-      : null;
 
+      navigation.state.key === 'Map'
+      ? navigation.navigate('Map', {zoomOut: true})
+      : null;
+      
       navigation.state.key === 'Filters' 
       ? navigation.navigate('FilterModal') 
       : defaultHandler(navigation.state.key);
+    },
+    tabBarOnLongPress: () => {
+      null
     }
   },
   cardStyle: {
     transparentCard: true,
-  }
+  },
 };
 
 const TabNavigator = createBottomTabNavigator(tabNavScreens, tabNavConfig);
@@ -78,11 +89,20 @@ const stackScreens = {
 const stackConfig = {
   headerMode: 'float',
   initialRouteName: 'Tabs',
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: '#0b8694',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  },
   mode: 'modal',
   transparentCard: true,
   cardStyle: {
     opacity: 1,
-  }
+  },
 };
 
 const MainNavigator = createStackNavigator(stackScreens, stackConfig);

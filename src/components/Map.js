@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { View, Button, StyleSheet } from 'react-native';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
 import Realm from 'realm';
 import mapLines from '../database/geoJson/mapLines.json';
@@ -15,15 +16,9 @@ export default class Map extends Component {
 
   state = {}
 
-  getNavigationParams() {
-    return this.props.navigation.state.params || {}
-  }
-
-  componentWillReceiveProps() {
-    if(this.props.navigation.navigate) {
-      console.warn(this.props.navigation.state)
-      this.zoomOut()
-    }
+  componentDidUpdate() {
+    let zoomOut = this.props.navigation.getParam('zoomOut', false)
+    zoomOut ? this.zoomOut() : null
   }
 
   componentWillMount() {
@@ -48,11 +43,14 @@ export default class Map extends Component {
 
   zoomOut = () => {
     this._map.getZoom().then((zoom) => {
-      this._map.zoomTo(zoom-.5)
+      this._map.zoomTo(zoom-.25)
     })
   }
 
   render() {
+    let { navigation } = this.props;
+    let properties = navigation.state.params;
+
     const layerStyles = MapboxGL.StyleSheet.create({
       icon: {
         iconImage: '{icon}',
@@ -79,6 +77,7 @@ export default class Map extends Component {
     return (
       <MapboxGL.MapView
         ref={c => (this._map = c)}
+        // styleURL="mapbox://styles/mrmeg/cjv5d4zgi1wqy1fpfifl58i5y"
         styleURL="mapbox://styles/mrmeg/cjv5cwiqp02b61gmv3c75alpo"
         centerCoordinate={[178.065, -17.7134]}
         pitchEnabled={false}
@@ -105,7 +104,6 @@ export default class Map extends Component {
             id="lodging"
             minZoomLevel={1}
             style={layerStyles.icon}
-            style={layerStyles.excluded}
           />
         </MapboxGL.ShapeSource>
 

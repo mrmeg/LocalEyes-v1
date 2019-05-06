@@ -12,7 +12,7 @@ export default class Filters extends Component {
     Lodging_isChecked: false,
     Shopping_isChecked: false,
     Tours_isChecked: false,
-    Transportation_isChecked: false
+    Transportation_isChecked: false,
   };
 
   static navigationOptions = {
@@ -22,7 +22,8 @@ export default class Filters extends Component {
 
   dismissModal = () => {
     this.props.navigation.navigate('Map', {
-      data: this.state
+      filters: this.state,
+      zoomOut: false
     });
   };
 
@@ -151,8 +152,10 @@ export default class Filters extends Component {
           </ScrollView>
         </View>
 
-        <View style={{ width: '100%' }}>
-          <Button onPress={this.dismissModal} title="Close" />
+        <View style={{ width: '100%', marginBottom: 5 }}>
+          <Button
+            color='#fff'
+            onPress={this.dismissModal} title="Close" />
         </View>
       </View>
     );
