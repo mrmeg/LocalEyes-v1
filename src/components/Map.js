@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Button, StyleSheet } from 'react-native';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
 import Realm from 'realm';
+import iconStyles from '../styles/iconStyles';
 import mapLines from '../database/geoJson/mapLines.json';
 import foodAndDrink from '../database/geoJson/foodAndDrink.json';
 import lodging from '../database/geoJson/lodging.json';
@@ -14,21 +15,47 @@ MapboxGL.setAccessToken(
 
 export default class Map extends Component {
 
-  state = {}
+  state = {
+    locations: {},
+    filters: {},
+    iconStyles: iconStyles,
+    hideLayer: {visibility: 'none'},
+    attractions: false,
+    diving: false,
+    foodAndDrink: false,
+    healthAndSafety: false,
+    Hiking: false,
+    Lodging: false,
+    Shopping: false,
+    Tours: false,
+    Transportation: false,
+  }
 
   componentDidUpdate() {
-    let zoomOut = this.props.navigation.getParam('zoomOut', false)
+    let zoomOut = this.props.navigation.getParam('zoomOut', null)
     zoomOut ? this.zoomOut() : null
+
+    let filters = this.props.navigation.getParam('filters', null)
+    this.setFiltersToState(filters)
   }
 
   componentWillMount() {
     console.log(this.state);
-    Realm.open(realmConfig).then(realm => {
-      const locations = realm.objects(locationSchema.name);
-      this.setState({
-        locations: locations
-      });
-    });
+    // Realm.open(realmConfig).then(realm => {
+    //   const locations = realm.objects(locationSchema.name);
+    //   this.setState({
+    //     locations: locations
+    //   });
+    // });
+  }
+
+  iconStyle = () => {
+    return {
+        iconImage: '{icon}',
+        iconAllowOverlap: true,
+        iconSize: 1.5,
+        iconIgnorePlacement: true
+    }
   }
 
   onMarkerPress = event => {
@@ -41,17 +68,50 @@ export default class Map extends Component {
     this.props.navigation.navigate('Modal', { feature });
   };
 
+  setFiltersToState = (filters) => {
+    if(filters !== this.state.filters) {
+      this.setState({filters: filters})
+    }
+
+    this.toggleFilters(filters)
+  };
+
+  toggleFilters = (filters) => {
+    for(let key in filters) {
+
+      if(filters[key] === true) {
+        console.warn(key)
+        console.warn(filters[key])
+
+
+
+      }
+
+    }
+  }
+
   zoomOut = () => {
     this._map.getZoom().then((zoom) => {
-      this._map.zoomTo(zoom-.25)
+      this._map.zoomTo(zoom - .25)
     })
-  }
+  };
 
   render() {
     let { navigation } = this.props;
     let properties = navigation.state.params;
 
-    const layerStyles = MapboxGL.StyleSheet.create({
+    // console.warn(this.state)
+    let filters = this.state.filters;
+    
+    // const rasterSourceProps = {
+    //   id: 'terrainSource',
+    //   // url: '',
+    //   url: 'http://tile.stamen.com/terrain/{z}/{x}/{y}.jpg',
+    //   // url: 'http://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    //   tileSize: 256,
+    // };
+
+    let layerStyles = MapboxGL.StyleSheet.create({
       icon: {
         iconImage: '{icon}',
         iconAllowOverlap: true,
@@ -65,14 +125,6 @@ export default class Map extends Component {
         visibility: 'none'
       }
     });
-
-    // const rasterSourceProps = {
-    //   id: 'terrainSource',
-    //   // url: '',
-    //   url: 'http://tile.stamen.com/terrain/{z}/{x}/{y}.jpg',
-    //   // url: 'http://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    //   tileSize: 256,
-    // };
 
     return (
       <MapboxGL.MapView
@@ -108,15 +160,15 @@ export default class Map extends Component {
         </MapboxGL.ShapeSource>
 
         <MapboxGL.ShapeSource
-          id="Food and Drink"
+          id="foodAndDrink"
           hitbox={{ width: 20, height: 20 }}
           onPress={this.onMarkerPress}
           shape={foodAndDrink}
         >
           <MapboxGL.SymbolLayer
-            id="Food and Drink"
+            id="foodAndDrink"
             minZoomLevel={1}
-            style={layerStyles.icon}
+            style={this.state.iconStyles.foodAndDrink}
           />
         </MapboxGL.ShapeSource>
 
@@ -132,7 +184,9 @@ export default class Map extends Component {
             style={layerStyles.line}
           />
         </MapboxGL.ShapeSource>
+        
       </MapboxGL.MapView>
     );
   }
 }
+

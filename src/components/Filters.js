@@ -4,15 +4,15 @@ import { CheckBox } from 'react-native-elements';
 
 export default class Filters extends Component {
   state = {
-    attractions_isChecked: false,
-    diving_isChecked: false,
-    foodAndDrink_isChecked: false,
-    healthAndSafety_isChecked: false,
-    Hiking_isChecked: false,
-    Lodging_isChecked: false,
-    Shopping_isChecked: false,
-    Tours_isChecked: false,
-    Transportation_isChecked: false,
+    attractions: false,
+    diving: false,
+    foodAndDrink: false,
+    healthAndSafety: false,
+    Hiking: false,
+    Lodging: false,
+    Shopping: false,
+    Tours: false,
+    Transportation: false,
   };
 
   static navigationOptions = {
@@ -49,10 +49,10 @@ export default class Filters extends Component {
           >
             <View style={styles.background}>
               <CheckBox
-                checked={this.state.attractions_isChecked}
+                checked={this.state.attractions}
                 onPress={() =>
                   this.setState({
-                    attractions_isChecked: !this.state.attractions_isChecked
+                    attractions: !this.state.attractions
                   })
                 }
                 title="Attractions"
@@ -61,10 +61,10 @@ export default class Filters extends Component {
 
             <View style={styles.background}>
               <CheckBox
-                checked={this.state.diving_isChecked}
+                checked={this.state.diving}
                 onPress={() =>
                   this.setState({
-                    diving_isChecked: !this.state.diving_isChecked
+                    diving: !this.state.diving
                   })
                 }
                 title="Diving"
@@ -72,10 +72,10 @@ export default class Filters extends Component {
             </View>
             <View style={styles.background}>
               <CheckBox
-                checked={this.state.foodAndDrink_isChecked}
+                checked={this.state.foodAndDrink}
                 onPress={() =>
                   this.setState({
-                    foodAndDrink_isChecked: !this.state.foodAndDrink_isChecked
+                    foodAndDrink: !this.state.foodAndDrink
                   })
                 }
                 title="Food and Drink"
@@ -83,11 +83,11 @@ export default class Filters extends Component {
             </View>
             <View style={styles.background}>
               <CheckBox
-                checked={this.state.healthAndSafety_isChecked}
+                checked={this.state.healthAndSafety}
                 onPress={() =>
                   this.setState({
-                    healthAndSafety_isChecked: !this.state
-                      .healthAndSafety_isChecked
+                    healthAndSafety: !this.state
+                      .healthAndSafety
                   })
                 }
                 title="Health and Safety"
@@ -95,10 +95,10 @@ export default class Filters extends Component {
             </View>
             <View style={styles.background}>
               <CheckBox
-                checked={this.state.Hiking_isChecked}
+                checked={this.state.Hiking}
                 onPress={() =>
                   this.setState({
-                    Hiking_isChecked: !this.state.Hiking_isChecked
+                    Hiking: !this.state.Hiking
                   })
                 }
                 title="Hiking"
@@ -106,10 +106,10 @@ export default class Filters extends Component {
             </View>
             <View style={styles.background}>
               <CheckBox
-                checked={this.state.Lodging_isChecked}
+                checked={this.state.Lodging}
                 onPress={() =>
                   this.setState({
-                    Lodging_isChecked: !this.state.Lodging_isChecked
+                    Lodging: !this.state.Lodging
                   })
                 }
                 title="Lodging"
@@ -117,10 +117,10 @@ export default class Filters extends Component {
             </View>
             <View style={styles.background}>
               <CheckBox
-                checked={this.state.Shopping_isChecked}
+                checked={this.state.Shopping}
                 onPress={() =>
                   this.setState({
-                    Shopping_isChecked: !this.state.Shopping_isChecked
+                    Shopping: !this.state.Shopping
                   })
                 }
                 title="Shopping"
@@ -128,10 +128,10 @@ export default class Filters extends Component {
             </View>
             <View style={styles.background}>
               <CheckBox
-                checked={this.state.Tours_isChecked}
+                checked={this.state.Tours}
                 onPress={() =>
                   this.setState({
-                    Tours_isChecked: !this.state.Tours_isChecked
+                    Tours: !this.state.Tours
                   })
                 }
                 title="Tours"
@@ -139,11 +139,11 @@ export default class Filters extends Component {
             </View>
             <View style={styles.background}>
               <CheckBox
-                checked={this.state.Transportation_isChecked}
+                checked={this.state.Transportation}
                 onPress={() =>
                   this.setState({
-                    Transportation_isChecked: !this.state
-                      .Transportation_isChecked
+                    Transportation: !this.state
+                      .Transportation
                   })
                 }
                 title="Transportation"
