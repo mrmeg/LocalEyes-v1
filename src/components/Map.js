@@ -17,18 +17,17 @@ export default class Map extends Component {
 
   state = {
     locations: {},
-    filters: {},
-    iconStyles: iconStyles,
-    hideLayer: {visibility: 'none'},
-    attractions: false,
-    diving: false,
-    foodAndDrink: false,
-    healthAndSafety: false,
-    Hiking: false,
-    Lodging: false,
-    Shopping: false,
-    Tours: false,
-    Transportation: false,
+    filters: {
+      attractions: false,
+      diving: false,
+      foodAndDrink: false,
+      healthAndSafety: false,
+      Hiking: false,
+      Lodging: false,
+      Shopping: false,
+      Tours: false,
+      Transportation: false,
+    },
   }
 
   componentDidUpdate() {
@@ -37,6 +36,8 @@ export default class Map extends Component {
 
     let filters = this.props.navigation.getParam('filters', null)
     this.setFiltersToState(filters)
+
+    // console.warn(this.state)
   }
 
   componentWillMount() {
@@ -72,23 +73,7 @@ export default class Map extends Component {
     if(filters !== this.state.filters) {
       this.setState({filters: filters})
     }
-
-    this.toggleFilters(filters)
   };
-
-  toggleFilters = (filters) => {
-    for(let key in filters) {
-
-      if(filters[key] === true) {
-        console.warn(key)
-        console.warn(filters[key])
-
-
-
-      }
-
-    }
-  }
 
   zoomOut = () => {
     this._map.getZoom().then((zoom) => {
@@ -97,12 +82,9 @@ export default class Map extends Component {
   };
 
   render() {
-    let { navigation } = this.props;
-    let properties = navigation.state.params;
+    // let { navigation } = this.props;
+    // let properties = navigation.state.params;
 
-    // console.warn(this.state)
-    let filters = this.state.filters;
-    
     // const rasterSourceProps = {
     //   id: 'terrainSource',
     //   // url: '',
@@ -121,7 +103,7 @@ export default class Map extends Component {
       line: {
         lineWidth: 2
       },
-      excluded: {
+      hidden: {
         visibility: 'none'
       }
     });
@@ -146,7 +128,7 @@ export default class Map extends Component {
         />
           </MapboxGL.RasterSource> */}
 
-        <MapboxGL.ShapeSource
+        {/* <MapboxGL.ShapeSource
           id="lodging"
           hitbox={{ width: 20, height: 20 }}
           onPress={this.onMarkerPress}
@@ -157,7 +139,7 @@ export default class Map extends Component {
             minZoomLevel={1}
             style={layerStyles.icon}
           />
-        </MapboxGL.ShapeSource>
+        </MapboxGL.ShapeSource> */}
 
         <MapboxGL.ShapeSource
           id="foodAndDrink"
@@ -166,9 +148,11 @@ export default class Map extends Component {
           shape={foodAndDrink}
         >
           <MapboxGL.SymbolLayer
-            id="foodAndDrink"
+            id="foodAndDrinkSymbols"
             minZoomLevel={1}
-            style={this.state.iconStyles.foodAndDrink}
+            // style={!this.state.filters.foodAndDrink ? console.warn(this.state.filters.foodAndDrink) : console.warn(this.state.filters.foodAndDrink) }
+            style={ !this.state.filters.foodAndDrink ? layerStyles.icon : layerStyles.hidden }
+            // style={layerStyles.icon}
           />
         </MapboxGL.ShapeSource>
 
