@@ -13,7 +13,7 @@ MapboxGL.setAccessToken(
   'pk.eyJ1IjoibXJtZWciLCJhIjoiY2p1OTFrZ3lvMmI2ZDN5b2IyMTJqbGx3aCJ9.JMyS6W3wxERau3-2nuzSsA'
 );
 
-export default class Map extends Component {
+export default class Map extends React.Component {
 
   state = {
     locations: {},
@@ -34,11 +34,16 @@ export default class Map extends Component {
     let zoomOut = this.props.navigation.getParam('zoomOut', null)
     zoomOut ? this.zoomOut() : null
 
-    let filters = this.props.navigation.getParam('filters', null)
-    this.setFiltersToState(filters)
+    // let filters = this.props.navigation.getParam('filters', null)
+    // this.setFiltersToState(filters)
 
     // console.warn(this.state)
   }
+
+  // componentWillReceiveProps() {
+  //   let filters = this.props.navigation.getParam('filters', null)
+  //   filters ? this.setFiltersToState(filters) : null
+  // }
 
   componentWillMount() {
     console.log(this.state);
@@ -70,9 +75,7 @@ export default class Map extends Component {
   };
 
   setFiltersToState = (filters) => {
-    if(filters !== this.state.filters) {
       this.setState({filters: filters})
-    }
   };
 
   zoomOut = () => {
@@ -82,8 +85,27 @@ export default class Map extends Component {
   };
 
   render() {
-    // let { navigation } = this.props;
-    // let properties = navigation.state.params;
+    let { navigation } = this.props;
+    let properties = navigation.state.params;
+
+    let layerStyles = MapboxGL.StyleSheet.create({
+      icon: {
+        iconImage: '{icon}',
+        iconAllowOverlap: true,
+        iconSize: 1.5,
+        iconIgnorePlacement: true,
+        visibility: 'none'
+      },
+      line: {
+        lineWidth: 2
+      },
+      hidden: {
+        visibility: 'visible'
+      }
+    });
+
+    let filters = this.props.navigation.getParam('filters', null)
+    filters ? layerStyles.icon.visibility = 'visible' : layerStyles.icon.visibility = 'none'
 
     // const rasterSourceProps = {
     //   id: 'terrainSource',
@@ -92,21 +114,6 @@ export default class Map extends Component {
     //   // url: 'http://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
     //   tileSize: 256,
     // };
-
-    let layerStyles = MapboxGL.StyleSheet.create({
-      icon: {
-        iconImage: '{icon}',
-        iconAllowOverlap: true,
-        iconSize: 1.5,
-        iconIgnorePlacement: true
-      },
-      line: {
-        lineWidth: 2
-      },
-      hidden: {
-        visibility: 'none'
-      }
-    });
 
     return (
       <MapboxGL.MapView
@@ -150,9 +157,10 @@ export default class Map extends Component {
           <MapboxGL.SymbolLayer
             id="foodAndDrinkSymbols"
             minZoomLevel={1}
-            // style={!this.state.filters.foodAndDrink ? console.warn(this.state.filters.foodAndDrink) : console.warn(this.state.filters.foodAndDrink) }
-            style={ !this.state.filters.foodAndDrink ? layerStyles.icon : layerStyles.hidden }
-            // style={layerStyles.icon}
+            // style={this.state.filters ? console.warn(this.state.filters) : console.warn(this.state.filters) }
+            // style={ !filters.foodAndDrink ? layerStyles.hidden : layerStyles.icon }
+            // style={[layerStyles.icon, layerStyles.hidden]}
+            style={layerStyles.icon}
           />
         </MapboxGL.ShapeSource>
 
@@ -173,4 +181,3 @@ export default class Map extends Component {
     );
   }
 }
-
