@@ -104,8 +104,13 @@ export default class Map extends React.Component {
       }
     });
 
-    let filters = this.props.navigation.getParam('filters', null)
-    filters ? layerStyles.icon.visibility = 'visible' : layerStyles.icon.visibility = 'none'
+    filters = this.props.navigation.getParam('filters', null)
+    for(key in filters) {
+      filters[key] === true ? layerStyles.icon.visibility = 'visible' : console.warn(filters[key])
+    }
+    
+    // filters ? layerStyles.icon.visibility = 'visible' : layerStyles.icon.visibility = 'none'
+    // console.warn(filters)
 
     // const rasterSourceProps = {
     //   id: 'terrainSource',
