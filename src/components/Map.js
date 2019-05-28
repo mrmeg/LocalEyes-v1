@@ -17,33 +17,12 @@ export default class Map extends React.Component {
 
   state = {
     locations: {},
-    filters: {
-      attractions: false,
-      diving: false,
-      foodAndDrink: false,
-      healthAndSafety: false,
-      Hiking: false,
-      Lodging: false,
-      Shopping: false,
-      Tours: false,
-      Transportation: false,
-    },
   }
 
   componentDidUpdate() {
     let zoomOut = this.props.navigation.getParam('zoomOut', null)
     zoomOut ? this.zoomOut() : null
-
-    // let filters = this.props.navigation.getParam('filters', null)
-    // this.setFiltersToState(filters)
-
-    // console.warn(this.state)
   }
-
-  // componentWillReceiveProps() {
-  //   let filters = this.props.navigation.getParam('filters', null)
-  //   filters ? this.setFiltersToState(filters) : null
-  // }
 
   componentWillMount() {
     console.log(this.state);
@@ -53,15 +32,6 @@ export default class Map extends React.Component {
     //     locations: locations
     //   });
     // });
-  }
-
-  iconStyle = () => {
-    return {
-        iconImage: '{icon}',
-        iconAllowOverlap: true,
-        iconSize: 1.5,
-        iconIgnorePlacement: true
-    }
   }
 
   onMarkerPress = event => {
@@ -94,24 +64,32 @@ export default class Map extends React.Component {
         iconAllowOverlap: true,
         iconSize: 1.5,
         iconIgnorePlacement: true,
-        visibility: 'none'
+        visibility: 'none',
+      },
+      foodAndDrink: {
+        iconImage: '{icon}',
+        iconAllowOverlap: true,
+        iconSize: 1.5,
+        iconIgnorePlacement: true,
+        visibility: 'none',
+      },
+      lodging: {
+        iconImage: '{icon}',
+        iconAllowOverlap: true,
+        iconSize: 1.5,
+        iconIgnorePlacement: true,
+        visibility: 'none',
       },
       line: {
         lineWidth: 2
       },
-      hidden: {
-        visibility: 'visible'
-      }
     });
 
     filters = this.props.navigation.getParam('filters', null)
-    for(key in filters) {
-      filters[key] === true ? layerStyles.icon.visibility = 'visible' : console.warn(filters[key])
-    }
+    for(let key in filters) {
+      filters[key] === true ? layerStyles[key].visibility = 'visible' : null
+     }
     
-    // filters ? layerStyles.icon.visibility = 'visible' : layerStyles.icon.visibility = 'none'
-    // console.warn(filters)
-
     // const rasterSourceProps = {
     //   id: 'terrainSource',
     //   // url: '',
@@ -140,7 +118,7 @@ export default class Map extends React.Component {
         />
           </MapboxGL.RasterSource> */}
 
-        {/* <MapboxGL.ShapeSource
+        <MapboxGL.ShapeSource
           id="lodging"
           hitbox={{ width: 20, height: 20 }}
           onPress={this.onMarkerPress}
@@ -149,9 +127,9 @@ export default class Map extends React.Component {
           <MapboxGL.SymbolLayer
             id="lodging"
             minZoomLevel={1}
-            style={layerStyles.icon}
+            style={layerStyles.lodging}
           />
-        </MapboxGL.ShapeSource> */}
+        </MapboxGL.ShapeSource>
 
         <MapboxGL.ShapeSource
           id="foodAndDrink"
@@ -162,10 +140,7 @@ export default class Map extends React.Component {
           <MapboxGL.SymbolLayer
             id="foodAndDrinkSymbols"
             minZoomLevel={1}
-            // style={this.state.filters ? console.warn(this.state.filters) : console.warn(this.state.filters) }
-            // style={ !filters.foodAndDrink ? layerStyles.hidden : layerStyles.icon }
-            // style={[layerStyles.icon, layerStyles.hidden]}
-            style={layerStyles.icon}
+            style={layerStyles.foodAndDrink}
           />
         </MapboxGL.ShapeSource>
 

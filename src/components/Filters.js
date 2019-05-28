@@ -9,7 +9,7 @@ export default class Filters extends Component {
     foodAndDrink: false,
     healthAndSafety: false,
     Hiking: false,
-    Lodging: false,
+    lodging: false,
     Shopping: false,
     Tours: false,
     Transportation: false,
@@ -106,10 +106,10 @@ export default class Filters extends Component {
             </View>
             <View style={styles.background}>
               <CheckBox
-                checked={this.state.Lodging}
+                checked={this.state.lodging}
                 onPress={() =>
                   this.setState({
-                    Lodging: !this.state.Lodging
+                    lodging: !this.state.lodging
                   })
                 }
                 title="Lodging"
