@@ -8,11 +8,11 @@ export default class Filters extends Component {
     diving: false,
     foodAndDrink: false,
     healthAndSafety: false,
-    Hiking: false,
+    hiking: false,
     lodging: false,
-    Shopping: false,
-    Tours: false,
-    Transportation: false,
+    shopping: false,
+    tours: false,
+    transportation: false,
   };
 
   static navigationOptions = {
@@ -95,10 +95,10 @@ export default class Filters extends Component {
             </View>
             <View style={styles.background}>
               <CheckBox
-                checked={this.state.Hiking}
+                checked={this.state.hiking}
                 onPress={() =>
                   this.setState({
-                    Hiking: !this.state.Hiking
+                    hiking: !this.state.hiking
                   })
                 }
                 title="Hiking"
@@ -117,10 +117,10 @@ export default class Filters extends Component {
             </View>
             <View style={styles.background}>
               <CheckBox
-                checked={this.state.Shopping}
+                checked={this.state.shopping}
                 onPress={() =>
                   this.setState({
-                    Shopping: !this.state.Shopping
+                    shopping: !this.state.shopping
                   })
                 }
                 title="Shopping"
@@ -128,10 +128,10 @@ export default class Filters extends Component {
             </View>
             <View style={styles.background}>
               <CheckBox
-                checked={this.state.Tours}
+                checked={this.state.tours}
                 onPress={() =>
                   this.setState({
-                    Tours: !this.state.Tours
+                    tours: !this.state.tours
                   })
                 }
                 title="Tours"
@@ -139,11 +139,11 @@ export default class Filters extends Component {
             </View>
             <View style={styles.background}>
               <CheckBox
-                checked={this.state.Transportation}
+                checked={this.state.transportation}
                 onPress={() =>
                   this.setState({
-                    Transportation: !this.state
-                      .Transportation
+                    transportation: !this.state
+                      .transportation
                   })
                 }
                 title="Transportation"

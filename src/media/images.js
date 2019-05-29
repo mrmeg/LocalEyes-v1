@@ -26,3 +26,8 @@ exports.TIKOS = require('../media/images/food&Drink/tikos.jpg');
 exports.SUVAMARKET = require('../media/images/food&Drink/suvaMarket.jpg');
 exports.ROYALSUVAYC = require('../media/images/food&Drink/royalSuvaYC.jpg');
 exports.HARDROCK = require('../media/images/food&Drink/hardRock.jpg');
+
+
+// exports.___ = require('../media/images/hiking/___.___');
+exports.TOMANIVI = require('../media/images/hiking/tomanivi.jpg');
+exports.SIGATOKA = require('../media/images/hiking/sigatoka.jpeg')

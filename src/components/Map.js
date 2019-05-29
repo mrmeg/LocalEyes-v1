@@ -3,9 +3,10 @@ import { View, Button, StyleSheet } from 'react-native';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
 import Realm from 'realm';
 import iconStyles from '../styles/iconStyles';
-import mapLines from '../database/geoJson/mapLines.json';
+import hiking from '../database/geoJson/hiking.json';
 import foodAndDrink from '../database/geoJson/foodAndDrink.json';
 import lodging from '../database/geoJson/lodging.json';
+import layerStyles from '../components/LayerStyles';
 import { locationSchema } from '../database/models/location';
 import { realmConfig } from '../database/realmConfig';
 
@@ -50,6 +51,7 @@ export default class Map extends React.Component {
 
   zoomOut = () => {
     this._map.getZoom().then((zoom) => {
+      console.log(zoom)
       this._map.zoomTo(zoom - .25)
     })
   };
@@ -58,36 +60,11 @@ export default class Map extends React.Component {
     let { navigation } = this.props;
     let properties = navigation.state.params;
 
-    let layerStyles = MapboxGL.StyleSheet.create({
-      icon: {
-        iconImage: '{icon}',
-        iconAllowOverlap: true,
-        iconSize: 1.5,
-        iconIgnorePlacement: true,
-        visibility: 'none',
-      },
-      foodAndDrink: {
-        iconImage: '{icon}',
-        iconAllowOverlap: true,
-        iconSize: 1.5,
-        iconIgnorePlacement: true,
-        visibility: 'none',
-      },
-      lodging: {
-        iconImage: '{icon}',
-        iconAllowOverlap: true,
-        iconSize: 1.5,
-        iconIgnorePlacement: true,
-        visibility: 'none',
-      },
-      line: {
-        lineWidth: 2
-      },
-    });
-
     filters = this.props.navigation.getParam('filters', null)
     for(let key in filters) {
-      filters[key] === true ? layerStyles[key].visibility = 'visible' : null
+      filters[key] === true 
+        ? layerStyles[key].visibility = 'visible' 
+        : layerStyles[key].visibility = 'none'
      }
     
     // const rasterSourceProps = {
@@ -102,7 +79,7 @@ export default class Map extends React.Component {
       <MapboxGL.MapView
         ref={c => (this._map = c)}
         // styleURL="mapbox://styles/mrmeg/cjv5d4zgi1wqy1fpfifl58i5y"
-        styleURL="mapbox://styles/mrmeg/cjv5cwiqp02b61gmv3c75alpo"
+        // styleURL="mapbox://styles/mrmeg/cjv5cwiqp02b61gmv3c75alpo"
         centerCoordinate={[178.065, -17.7134]}
         pitchEnabled={false}
         rotateEnabled={false}
@@ -136,24 +113,47 @@ export default class Map extends React.Component {
           hitbox={{ width: 20, height: 20 }}
           onPress={this.onMarkerPress}
           shape={foodAndDrink}
+          // cluster={true}
+          // clusterRadius={5}
+          // clusterMaxZoom={10}
         >
           <MapboxGL.SymbolLayer
             id="foodAndDrinkSymbols"
             minZoomLevel={1}
             style={layerStyles.foodAndDrink}
           />
+
+          {/* <MapboxGL.SymbolLayer
+            id="clusteredPoints"
+            belowLayerID="foodAndDrinkSymbols"
+            filter={['has', 'point_count']}
+            style={layerStyles.clusteredPoints}
+          />
+
+            <MapboxGL.SymbolLayer
+              id="singlePoint"
+              filter={['!has', 'point_count']}
+              style={layerStyles.foodAndDrink}
+            /> */}
+
         </MapboxGL.ShapeSource>
 
         <MapboxGL.ShapeSource
-          id="trails"
+          id="hiking"
           minZoomLevel={1}
-          shape={mapLines}
+          shape={hiking}
           onPress={this.onLinePress}
         >
           <MapboxGL.LineLayer
-            id="trailsLine"
-            minZoomLevel={14}
-            style={layerStyles.line}
+            id="hikingLines"
+            minZoomLevel={8}
+            style={layerStyles.hiking}
+          />
+
+          <MapboxGL.SymbolLayer
+            id=""
+            minZoomLevel={8}
+            style={layerStyles.hiking} 
           />
         </MapboxGL.ShapeSource>
         
