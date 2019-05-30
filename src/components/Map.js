@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import { View, Button, StyleSheet } from 'react-native';
 import MapboxGL from '@mapbox/react-native-mapbox-gl';
 import Realm from 'realm';
-import iconStyles from '../styles/iconStyles';
 import hiking from '../database/geoJson/hiking.json';
 import foodAndDrink from '../database/geoJson/foodAndDrink.json';
 import lodging from '../database/geoJson/lodging.json';
-import layerStyles from '../components/LayerStyles';
+import attractions from '../database/geoJson/attractions.json';
+import diving from '../database/geoJson/diving.json';
+import shopping from '../database/geoJson/shopping.json';
+import tours from '../database/geoJson/tours.json';
+import transportation from '../database/geoJson/transportation.json';
+import layerStyles from '../styles/LayerStyles';
 import { locationSchema } from '../database/models/location';
 import { realmConfig } from '../database/realmConfig';
 
@@ -51,8 +55,7 @@ export default class Map extends React.Component {
 
   zoomOut = () => {
     this._map.getZoom().then((zoom) => {
-      console.log(zoom)
-      this._map.zoomTo(zoom - .25)
+      this._map.zoomTo(zoom - .75)
     })
   };
 
@@ -79,7 +82,7 @@ export default class Map extends React.Component {
       <MapboxGL.MapView
         ref={c => (this._map = c)}
         // styleURL="mapbox://styles/mrmeg/cjv5d4zgi1wqy1fpfifl58i5y"
-        // styleURL="mapbox://styles/mrmeg/cjv5cwiqp02b61gmv3c75alpo"
+        styleURL="mapbox://styles/mrmeg/cjv5cwiqp02b61gmv3c75alpo"
         centerCoordinate={[178.065, -17.7134]}
         pitchEnabled={false}
         rotateEnabled={false}
@@ -96,15 +99,28 @@ export default class Map extends React.Component {
           </MapboxGL.RasterSource> */}
 
         <MapboxGL.ShapeSource
-          id="lodging"
+          id="attractions"
           hitbox={{ width: 20, height: 20 }}
           onPress={this.onMarkerPress}
-          shape={lodging}
+          shape={attractions}
         >
           <MapboxGL.SymbolLayer
-            id="lodging"
+            id="attractions"
             minZoomLevel={1}
-            style={layerStyles.lodging}
+            style={layerStyles.attractions}
+          />
+        </MapboxGL.ShapeSource>
+
+        <MapboxGL.ShapeSource
+          id="diving"
+          hitbox={{ width: 20, height: 20 }}
+          onPress={this.onMarkerPress}
+          shape={diving}
+        >
+          <MapboxGL.SymbolLayer
+            id="diving"
+            minZoomLevel={1}
+            style={layerStyles.diving}
           />
         </MapboxGL.ShapeSource>
 
@@ -139,6 +155,19 @@ export default class Map extends React.Component {
         </MapboxGL.ShapeSource>
 
         <MapboxGL.ShapeSource
+          id="lodging"
+          hitbox={{ width: 20, height: 20 }}
+          onPress={this.onMarkerPress}
+          shape={lodging}
+        >
+          <MapboxGL.SymbolLayer
+            id="lodging"
+            minZoomLevel={1}
+            style={layerStyles.lodging}
+          />
+        </MapboxGL.ShapeSource>
+
+        <MapboxGL.ShapeSource
           id="hiking"
           minZoomLevel={1}
           shape={hiking}
@@ -146,14 +175,51 @@ export default class Map extends React.Component {
         >
           <MapboxGL.LineLayer
             id="hikingLines"
-            minZoomLevel={8}
             style={layerStyles.hiking}
           />
 
           <MapboxGL.SymbolLayer
             id=""
-            minZoomLevel={8}
             style={layerStyles.hiking} 
+          />
+        </MapboxGL.ShapeSource>
+
+        <MapboxGL.ShapeSource
+          id="shopping"
+          hitbox={{ width: 20, height: 20 }}
+          onPress={this.onMarkerPress}
+          shape={shopping}
+        >
+          <MapboxGL.SymbolLayer
+            id="shopping"
+            minZoomLevel={1}
+            style={layerStyles.shopping}
+          />
+        </MapboxGL.ShapeSource>
+
+        <MapboxGL.ShapeSource
+          id="tours"
+          hitbox={{ width: 20, height: 20 }}
+          onPress={this.onMarkerPress}
+          shape={tours}
+        >
+          <MapboxGL.SymbolLayer
+            id="tours"
+            minZoomLevel={1}
+            style={layerStyles.tours}
+          />
+        </MapboxGL.ShapeSource>
+
+        <MapboxGL.ShapeSource
+          id="transportation"
+          hitbox={{ width: 20, height: 20 }}
+          onPress={this.onMarkerPress}
+          shape={transportation}
+        >
+          <MapboxGL.SymbolLayer
+            id="transportation"
+            minZoomLevel={1}
+            style={layerStyles.transportation}
           />
         </MapboxGL.ShapeSource>
         

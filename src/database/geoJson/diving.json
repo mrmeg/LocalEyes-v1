@@ -1,0 +1,42 @@
+{  
+  "type":"FeatureCollection",
+  "name":"Diving",
+  "crs":{  
+     "type":"name",
+     "properties":{  
+        "name":"urn:ogc:def:crs:OGC:1.3:CRS84"
+     }
+  },
+  "features":[  
+     {  
+        "type":"Feature",
+        "properties":{  
+           "Name":"Beqa Adventure Divers",
+           "icon":"harbor-11",
+           "description":null
+        },
+        "geometry":{  
+           "type":"Point",
+           "coordinates":[  
+              178.073767945354007,
+              -18.242463255314789
+           ]
+        }
+     },
+     {  
+        "type":"Feature",
+        "properties":{  
+           "Name":"Suva Scuba Dive Club",
+           "icon":"harbor-11",
+           "description":null
+        },
+        "geometry":{  
+           "type":"Point",
+           "coordinates":[  
+              178.429728644459914,
+              -18.12303061021483
+           ]
+        }
+     }
+  ]
+}

@@ -12,6 +12,7 @@
         "type":"Feature",
         "properties":{  
            "Name":"Sigatoka Sand Dunes Office",
+           "icon":"park-15",
            "description":null,
            "tessellate":-1,
            "photo": "SIGATOKA"
@@ -534,7 +535,7 @@
       "type":"Feature",
       "properties":{
          "Name":"Mt. Tomanivi hike start",
-         "icon": "mountain-15",
+         "icon": "park-15",
          "description": "",
          "address": "",
          "phone": "",
